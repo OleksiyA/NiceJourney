@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'NiceJourney' target in the 'NiceJourney' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
