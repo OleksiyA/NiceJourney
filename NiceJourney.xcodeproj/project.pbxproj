@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4DAF984B17A0463D00C0A3E2 /* RouteResolverBruteForce.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF984A17A0463D00C0A3E2 /* RouteResolverBruteForce.m */; };
 		4DB6D0B71799D0AC00501630 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB6D0B61799D0AC00501630 /* Foundation.framework */; };
 		4DB6D0BA1799D0AC00501630 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB6D0B91799D0AC00501630 /* main.m */; };
 		4DB6D0BE1799D0AD00501630 /* NiceJourney.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4DB6D0BD1799D0AD00501630 /* NiceJourney.1 */; };
@@ -30,6 +31,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4DAF984917A0463D00C0A3E2 /* RouteResolverBruteForce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteResolverBruteForce.h; sourceTree = "<group>"; };
+		4DAF984A17A0463D00C0A3E2 /* RouteResolverBruteForce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteResolverBruteForce.m; sourceTree = "<group>"; };
 		4DB6D0B31799D0AC00501630 /* NiceJourney */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NiceJourney; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DB6D0B61799D0AC00501630 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4DB6D0B91799D0AC00501630 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -111,6 +114,8 @@
 			children = (
 				4DB6D0CC179C0D8700501630 /* RouteResolver.h */,
 				4DB6D0CD179C0D8700501630 /* RouteResolver.m */,
+				4DAF984917A0463D00C0A3E2 /* RouteResolverBruteForce.h */,
+				4DAF984A17A0463D00C0A3E2 /* RouteResolverBruteForce.m */,
 			);
 			name = "Route Resolving";
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 				4DB6D0C61799D25E00501630 /* Destination.m in Sources */,
 				4DB6D0CB179C0D0D00501630 /* Route.m in Sources */,
 				4DB6D0CE179C0D8700501630 /* RouteResolver.m in Sources */,
+				4DAF984B17A0463D00C0A3E2 /* RouteResolverBruteForce.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +278,7 @@
 				4DB6D0C31799D0AD00501630 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

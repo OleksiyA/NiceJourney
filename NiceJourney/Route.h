@@ -14,4 +14,9 @@
 
 @property(strong,nonatomic) NSMutableArray*         destinations;
 
+-(float)length;
+-(void)appendDestination:(Destination*)destination;
+-(void)appendRoute:(Route*)route;
+-(void)insertDestinationAtStart:(Destination*)destination;
+
 @end

@@ -14,19 +14,61 @@
 
 
 #pragma mark Allocation and Deallocation
--(id)initWithString:(NSString*)string
+-(id)initWithString:(NSString*)string withIdentifier:(NSString*)identifier
 {
-#warning Implement initWithString
+    if(self = [super init])
+    {
+        //extract components from string, return nil if required component not present
+        NSArray* components = [string componentsSeparatedByString:@"("];
+        if([components count]<2)
+        {
+            return nil;
+        }
+        
+        NSString* title = [components objectAtIndex:0];
+        
+        NSString* coordinates = [[components objectAtIndex:1]stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@")"]];
+        
+        NSArray* coordinatesComponents = [coordinates componentsSeparatedByString:@","];
+        if([coordinatesComponents count]<2)
+        {
+            return nil;
+        }
+        
+        if(![coordinatesComponents[0]length] || ![coordinatesComponents[1]length])
+        {
+            //coordinates are required for destination object
+            return nil;
+        }
+        
+        float lattitude = [coordinatesComponents[0] floatValue];
+        float longitude = [coordinatesComponents[1] floatValue];
+        
+        //all data extracted and expected to be valid
+        self.title = title;
+        self.coordinates = CLLocationCoordinate2DMake(lattitude, longitude);
+        
+        self.identifier = identifier;
+        
+        return self;
+    }
+    
     return nil;
 }
 
 #pragma mark Public interface
 -(NSString*)stringRepresentation
 {
-#warning Correct stringRepresentation for Destination
-    NSString* string = [NSString stringWithFormat:@"%@",self.title];
+    NSString* string = [NSString stringWithFormat:@"%@ (%f, %f)", self.title, self.coordinates.latitude, self.coordinates.longitude];
     
     return string;
+}
+
+-(NSString*)description
+{
+    NSString* str = [NSString stringWithFormat:@"<%@ %p, %@>",NSStringFromClass([self class]), self,[self stringRepresentation]];
+    
+    return str;
 }
 
 @end

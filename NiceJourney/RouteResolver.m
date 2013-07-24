@@ -7,6 +7,7 @@
 //
 
 #import "RouteResolver.h"
+#import "RouteResolverBruteForce.h"
 
 @implementation RouteResolver
 
@@ -19,8 +20,21 @@
 #pragma mark Public interface
 +(id)routeResoverWithAlgorithm:(ERouteResolverAlgorithm)algorithm withDestinations:(NSArray*)destinations
 {
-#warning Implement creating route resolver
-    return nil;
+    RouteResolver* resolver = nil;
+    
+    switch (algorithm)
+    {
+        case ERouteResolverAlgorithmBruteForce:
+            resolver = [[RouteResolverBruteForce alloc]init];
+            break;
+    }
+    
+    if(resolver)
+    {
+        resolver.inputDestinations = destinations;
+    }
+    
+    return resolver;
 }
 
 -(void)resoveRoute

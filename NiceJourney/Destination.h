@@ -13,8 +13,9 @@
 
 @property(nonatomic,strong) NSString*           title;
 @property CLLocationCoordinate2D                coordinates;
+@property(nonatomic,strong) NSString*           identifier;
 
--(id)initWithString:(NSString*)string;
+-(id)initWithString:(NSString*)string withIdentifier:(NSString*)identifier;
 -(NSString*)stringRepresentation;
 
 @end

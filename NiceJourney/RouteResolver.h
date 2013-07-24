@@ -13,8 +13,7 @@
 
 typedef enum
 {
-    ERouteResolverAlgorithmBruteForse=0,
-    ERouteResolverAlgorithmNearestNext
+    ERouteResolverAlgorithmBruteForce=0,
 }ERouteResolverAlgorithm;
 
 @interface RouteResolver : NSObject
