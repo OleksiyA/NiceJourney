@@ -22,6 +22,43 @@
 #import <Foundation/Foundation.h>
 
 
+static int processFile(const char * filePath);
+
+
+int main (int argc, const char * argv[])
+{
+    
+    @autoreleasepool
+    {
+        LOG(@"Application started.");
+        
+        //parse input parameters
+        if(argc<2)
+        {
+            NSLog(@"Please provide path to input file. Application will close.");
+            return -1;
+        }
+        
+        NSString* inputFilePath = [NSString stringWithUTF8String:argv[1]];
+        
+        NSString* fileContents = [NSString stringWithContentsOfFile:inputFilePath encoding:NSUTF8StringEncoding error:nil];
+        
+        NSArray* arrayOfNamesOfFilesToProcess = [fileContents componentsSeparatedByString:@"\n"];
+        
+        for(NSString* filePath in arrayOfNamesOfFilesToProcess)
+        {
+            int ret_val = processFile([filePath UTF8String]);
+            if(ret_val)
+            {
+                return ret_val;
+            }
+        }
+        
+    }
+    
+    return 0;
+}
+
 
 //
 //  Destination.h
@@ -499,38 +536,4 @@ int processFile(const char * filePath)
     return 0;
 }
 
-
-int main(int argc, const char * argv[])
-{
-
-    @autoreleasepool
-    {
-        LOG(@"Application started.");
-        
-        //parse input parameters
-        if(argc<2)
-        {
-            NSLog(@"Please provide path to input file. Application will close.");
-            return -1;
-        }
-        
-        NSString* inputFilePath = [NSString stringWithUTF8String:argv[1]];
-        
-        NSString* fileContents = [NSString stringWithContentsOfFile:inputFilePath encoding:NSUTF8StringEncoding error:nil];
-        
-        NSArray* arrayOfNamesOfFilesToProcess = [fileContents componentsSeparatedByString:@"\n"];
-        
-        for(NSString* filePath in arrayOfNamesOfFilesToProcess)
-        {
-            int ret_val = processFile([filePath UTF8String]);
-            if(ret_val)
-            {
-                return ret_val;
-            }
-        }
-        
-    }
-    
-    return 0;
-}
 
