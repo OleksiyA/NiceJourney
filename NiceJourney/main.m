@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Oleksiy Ivanov. All rights reserved.
 //
 
-#define DEF_ENABLE_DEBUG_OUTPUT
+//#define DEF_ENABLE_DEBUG_OUTPUT
 
 #ifdef DEF_ENABLE_DEBUG_OUTPUT
 
@@ -102,9 +102,9 @@ int main(int argc, const char * argv[])
         for(int i = 0; i < [resultRoute.destinations count]; i++)
         {
             Destination* destination = (resultRoute.destinations)[i];
-            NSLog(@"%@",[destination identifier]);
+            
+            fputs([[[destination identifier]stringByAppendingString:@"\n"] UTF8String], stdout);
         }
-        
         
         LOG(@"Application finished.");
         
