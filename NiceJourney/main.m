@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Oleksiy Ivanov. All rights reserved.
 //
 
-//#define DEF_ENABLE_DEBUG_OUTPUT
+#define DEF_ENABLE_DEBUG_OUTPUT
 
 #ifdef DEF_ENABLE_DEBUG_OUTPUT
 
@@ -41,6 +41,11 @@ typedef struct {
 } CLLocationCoordinate2D;
 
 @interface Destination : NSObject
+{
+    NSString*           title;
+    CLLocationCoordinate2D                coordinates;
+    NSString*           identifier;
+}
 
 @property(nonatomic,retain) NSString*           title;
 @property CLLocationCoordinate2D                coordinates;
@@ -63,6 +68,10 @@ typedef struct {
 
 
 @implementation Destination
+
+@synthesize title;
+@synthesize coordinates;
+@synthesize identifier;
 
 #pragma mark Internal methods
 
@@ -89,14 +98,14 @@ typedef struct {
             return nil;
         }
         
-        if(![coordinatesComponents[0]length] || ![coordinatesComponents[1]length])
+        if(![[coordinatesComponents objectAtIndex:0]length] || ![[coordinatesComponents objectAtIndex:1]length])
         {
             //coordinates are required for destination object
             return nil;
         }
         
-        float lattitude = [coordinatesComponents[0] floatValue];
-        float longitude = [coordinatesComponents[1] floatValue];
+        float lattitude = [[coordinatesComponents objectAtIndex:0] floatValue];
+        float longitude = [[coordinatesComponents objectAtIndex:1] floatValue];
         
         //all data extracted and expected to be valid
         self.title = title;
@@ -149,6 +158,9 @@ typedef struct {
 @class Destination;
 
 @interface Route : NSObject
+{
+    NSMutableArray*         destinations;
+}
 
 @property(retain,nonatomic) NSMutableArray*         destinations;
 
@@ -174,9 +186,16 @@ typedef struct {
 
 @implementation Route
 
+@synthesize destinations;
+
 #define EARTH_RADIUS 6378.138
 
 #pragma mark Internal methods
++(double)rad:(double)d
+{
+    return d *3.14159265 / 180.0;
+}
+
 +(double)GetDistance:(double)lat1 long1:(double)lng1 la2:(double)lat2 long2:(double)lng2
 {
     double radLat1 = [Route rad:lat1];
@@ -187,11 +206,6 @@ typedef struct {
     s = s * EARTH_RADIUS;
     s = round(s * 10000) / 10000;
     return s;
-}
-
-+(double)rad:(double)d
-{
-    return d *3.14159265 / 180.0;
 }
 
 -(float)calculateLength
@@ -205,7 +219,8 @@ typedef struct {
     
     Destination* prevDest = [self.destinations objectAtIndex:0];
     
-    for (int i = 1; i < [self.destinations count]; i++)
+    int i = 1;
+    for (; i < [self.destinations count]; i++)
     {
         Destination* dest = [self.destinations objectAtIndex:i];
         
@@ -274,6 +289,10 @@ typedef enum
 }ERouteResolverAlgorithm;
 
 @interface RouteResolver : NSObject
+{
+    NSArray*     inputDestinations;
+    Route*       outputRoute;
+}
 
 @property(nonatomic,retain)NSArray*     inputDestinations;
 @property(nonatomic,retain)Route*       outputRoute;
@@ -298,6 +317,7 @@ typedef enum
 
 @interface RouteResolverBruteForce : RouteResolver
 
+
 @end
 
 
@@ -313,6 +333,9 @@ typedef enum
 
 
 @implementation RouteResolver
+
+@synthesize inputDestinations;
+@synthesize outputRoute;
 
 #pragma mark Internal methods
 
@@ -370,15 +393,16 @@ typedef enum
     {
         route = [[Route alloc]init];
         [route appendDestination:startingPoint];
-        [route appendDestination:availablePoints[0]];
+        [route appendDestination:[availablePoints objectAtIndex:0]];
         
         return route;
     }
     
     //iterate over all available points and find shortest route
-    for(int i = 0; i < [availablePoints count]; i ++)
+    int i = 0;
+    for(; i < [availablePoints count]; i ++)
     {
-        Destination* destination = availablePoints[i];
+        Destination* destination = [availablePoints objectAtIndex:i];
         
         NSMutableArray* availablePointsTmp = [[NSMutableArray alloc]initWithArray:availablePoints];
         [availablePointsTmp removeObject:destination];
@@ -437,7 +461,8 @@ int processFile(const char * filePath)
     }
     
     //extract list of original destinations from file
-    NSString* fileContents = [NSString stringWithContentsOfFile:inputFilePath encoding:NSUTF8StringEncoding error:nil];
+    NSError* error = nil;
+    NSString* fileContents = [NSString stringWithContentsOfFile:inputFilePath encoding:NSUTF8StringEncoding error:&error];
     
     if(![fileContents length])
     {
@@ -448,9 +473,10 @@ int processFile(const char * filePath)
     NSArray* listOfStrings = [fileContents componentsSeparatedByString:@"\n"];
     
     NSMutableArray* inputPoints = [[NSMutableArray alloc]initWithCapacity:[listOfStrings count]];
-    for(int i = 0; i < [listOfStrings count]; i++)
+    int i = 0;
+    for(; i < [listOfStrings count]; i++)
     {
-        NSString* stringForDestination = listOfStrings[i];
+        NSString* stringForDestination = [listOfStrings objectAtIndex:i];
         
         //remove index of destination from string, from input file format description it is presumed that destinations are ordered ascending order
         NSArray* components = [stringForDestination componentsSeparatedByString:@"|"];
@@ -460,7 +486,7 @@ int processFile(const char * filePath)
             continue;
         }
         
-        NSString* stringDestinationWithoutIndex = components[1];
+        NSString* stringDestinationWithoutIndex = [components objectAtIndex:1];
         
         //make identifier for Destination 1 based, so first destination is identifier 1
         Destination* destination = [[Destination alloc]initWithString:stringDestinationWithoutIndex withIdentifier:[NSString stringWithFormat:@"%d",i+1]];
@@ -487,9 +513,10 @@ int processFile(const char * filePath)
     LOG(@"Printing resolved route. Route lenght [%.2f] km .",[resultRoute length]/1000);
     
     //print result
-    for(int i = 0; i < [resultRoute.destinations count]; i++)
+    i = 0;
+    for(; i < [resultRoute.destinations count]; i++)
     {
-        Destination* destination = (resultRoute.destinations)[i];
+        Destination* destination = [resultRoute.destinations objectAtIndex:i];
         
         fputs([[[destination identifier]stringByAppendingString:@"\n"] UTF8String], stdout);
     }
@@ -516,18 +543,13 @@ int main(int argc, const char * argv[])
     
     NSString* inputFilePath = [NSString stringWithUTF8String:argv[1]];
     
-    NSString* fileContents = [NSString stringWithContentsOfFile:inputFilePath encoding:NSUTF8StringEncoding error:nil];
     
-    NSArray* arrayOfNamesOfFilesToProcess = [fileContents componentsSeparatedByString:@"\n"];
-    
-    for(NSString* filePath in arrayOfNamesOfFilesToProcess)
+    int ret_val = processFile([inputFilePath UTF8String]);
+    if(ret_val)
     {
-        int ret_val = processFile([filePath UTF8String]);
-        if(ret_val)
-        {
-            return ret_val;
-        }
+        return ret_val;
     }
+    
     
     [pool release];
     
