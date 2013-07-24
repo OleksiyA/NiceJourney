@@ -46,7 +46,13 @@
         
         //all data extracted and expected to be valid
         self.title = title;
-        self.coordinates = CLLocationCoordinate2DMake(lattitude, longitude);
+        
+        CLLocationCoordinate2D coordinates2D;
+        
+        coordinates2D.latitude = lattitude;
+        coordinates2D.longitude = longitude;
+        
+        self.coordinates = coordinates2D;
         
         self.identifier = identifier;
         

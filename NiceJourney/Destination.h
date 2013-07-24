@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
+
+typedef double CLLocationDegrees;
+
+typedef struct {
+    CLLocationDegrees latitude;
+    CLLocationDegrees longitude;
+} CLLocationCoordinate2D;
 
 @interface Destination : NSObject
 
