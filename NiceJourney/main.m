@@ -20,9 +20,6 @@
 
 
 #import <Foundation/Foundation.h>
-#import "Destination.h"
-#import "RouteResolver.h"
-#import "Route.h"
 
 
 
@@ -64,7 +61,6 @@ typedef struct {
 //  Copyright (c) 2013 Oleksiy Ivanov. All rights reserved.
 //
 
-#import "Destination.h"
 
 @implementation Destination
 
@@ -174,8 +170,6 @@ typedef struct {
 //  Copyright (c) 2013 Oleksiy Ivanov. All rights reserved.
 //
 
-#import "Route.h"
-#import "Destination.h"
 
 
 @implementation Route
@@ -301,7 +295,6 @@ typedef enum
 //  Copyright (c) 2013 Oleksiy Ivanov. All rights reserved.
 //
 
-#import "RouteResolver.h"
 
 @interface RouteResolverBruteForce : RouteResolver
 
@@ -318,8 +311,6 @@ typedef enum
 //  Copyright (c) 2013 Oleksiy Ivanov. All rights reserved.
 //
 
-#import "RouteResolver.h"
-#import "RouteResolverBruteForce.h"
 
 @implementation RouteResolver
 
@@ -367,8 +358,6 @@ typedef enum
 //  Copyright (c) 2013 Oleksiy Ivanov. All rights reserved.
 //
 
-#import "RouteResolverBruteForce.h"
-#import "Route.h"
 
 @implementation RouteResolverBruteForce
 
