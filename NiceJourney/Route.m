@@ -57,8 +57,6 @@
 
 -(void)appendDestination:(Destination*)destination
 {
-    Destination* previousFinalDestination = [self.destinations lastObject];
-    
     [self.destinations addObject:destination];
 }
 
@@ -68,9 +66,7 @@
 }
 
 -(void)insertDestinationAtStart:(Destination*)destination
-{
-    Destination* previousFirstDestination = [self.destinations lastObject];
-    
+{    
     [self.destinations insertObject:destination atIndex:0];
 }
 
