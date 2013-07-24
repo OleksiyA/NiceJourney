@@ -42,9 +42,9 @@ typedef struct {
 
 @interface Destination : NSObject
 
-@property(nonatomic,strong) NSString*           title;
+@property(nonatomic,retain) NSString*           title;
 @property CLLocationCoordinate2D                coordinates;
-@property(nonatomic,strong) NSString*           identifier;
+@property(nonatomic,retain) NSString*           identifier;
 
 -(id)initWithString:(NSString*)string withIdentifier:(NSString*)identifier;
 -(NSString*)stringRepresentation;
@@ -150,7 +150,7 @@ typedef struct {
 
 @interface Route : NSObject
 
-@property(strong,nonatomic) NSMutableArray*         destinations;
+@property(retain,nonatomic) NSMutableArray*         destinations;
 
 -(float)length;
 -(void)appendDestination:(Destination*)destination;
@@ -275,8 +275,8 @@ typedef enum
 
 @interface RouteResolver : NSObject
 
-@property(nonatomic,strong)NSArray*     inputDestinations;
-@property(nonatomic,strong)Route*       outputRoute;
+@property(nonatomic,retain)NSArray*     inputDestinations;
+@property(nonatomic,retain)Route*       outputRoute;
 
 +(id)routeResoverWithAlgorithm:(ERouteResolverAlgorithm)algorithm withDestinations:(NSArray*)destinations;
 
@@ -503,33 +503,33 @@ int processFile(const char * filePath)
 int main(int argc, const char * argv[])
 {
 
-    @autoreleasepool
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    
+    LOG(@"Application started.");
+    
+    //parse input parameters
+    if(argc<2)
     {
-        LOG(@"Application started.");
-        
-        //parse input parameters
-        if(argc<2)
-        {
-            NSLog(@"Please provide path to input file. Application will close.");
-            return -1;
-        }
-        
-        NSString* inputFilePath = [NSString stringWithUTF8String:argv[1]];
-        
-        NSString* fileContents = [NSString stringWithContentsOfFile:inputFilePath encoding:NSUTF8StringEncoding error:nil];
-        
-        NSArray* arrayOfNamesOfFilesToProcess = [fileContents componentsSeparatedByString:@"\n"];
-        
-        for(NSString* filePath in arrayOfNamesOfFilesToProcess)
-        {
-            int ret_val = processFile([filePath UTF8String]);
-            if(ret_val)
-            {
-                return ret_val;
-            }
-        }
-        
+        NSLog(@"Please provide path to input file. Application will close.");
+        return -1;
     }
+    
+    NSString* inputFilePath = [NSString stringWithUTF8String:argv[1]];
+    
+    NSString* fileContents = [NSString stringWithContentsOfFile:inputFilePath encoding:NSUTF8StringEncoding error:nil];
+    
+    NSArray* arrayOfNamesOfFilesToProcess = [fileContents componentsSeparatedByString:@"\n"];
+    
+    for(NSString* filePath in arrayOfNamesOfFilesToProcess)
+    {
+        int ret_val = processFile([filePath UTF8String]);
+        if(ret_val)
+        {
+            return ret_val;
+        }
+    }
+    
+    [pool release];
     
     return 0;
 }

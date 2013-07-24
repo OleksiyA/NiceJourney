@@ -220,6 +220,7 @@
 		4DB6D0C21799D0AD00501630 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NiceJourney/NiceJourney-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -229,6 +230,7 @@
 		4DB6D0C31799D0AD00501630 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NiceJourney/NiceJourney-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
