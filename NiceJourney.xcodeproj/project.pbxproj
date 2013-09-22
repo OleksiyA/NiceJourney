@@ -40,6 +40,7 @@
 		4DB6D0CA179C0D0D00501630 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
 		4DB6D0CC179C0D8700501630 /* RouteResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteResolver.h; sourceTree = "<group>"; };
 		4DB6D0CD179C0D8700501630 /* RouteResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteResolver.m; sourceTree = "<group>"; };
+		7AC6AB7617EF766800EFDE56 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +58,7 @@
 		4DB6D0AA1799D0AC00501630 = {
 			isa = PBXGroup;
 			children = (
+				7AC6AB7617EF766800EFDE56 /* README.md */,
 				4DB6D0B81799D0AC00501630 /* NiceJourney */,
 				4DB6D0B51799D0AC00501630 /* Frameworks */,
 				4DB6D0B41799D0AC00501630 /* Products */,
