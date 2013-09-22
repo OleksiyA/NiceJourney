@@ -3,7 +3,8 @@
 //  NiceJourney
 //
 //  Created by Oleksiy Ivanov on 21/07/2013.
-//  Copyright (c) 2013 Oleksiy Ivanov. All rights reserved.
+//  Copyright (c) 2013 Oleksiy Ivanov.
+//  The MIT License (MIT).
 //
 
 #import "Route.h"
@@ -15,7 +16,7 @@
 #define EARTH_RADIUS 6378.138
 
 #pragma mark Internal methods
-+(double)GetDistance:(double)lat1 long1:(double)lng1 la2:(double)lat2 long2:(double)lng2
++ (double)GetDistance:(double)lat1 long1:(double)lng1 la2:(double)lat2 long2:(double)lng2
 {
     double radLat1 = [Route rad:lat1];
     double radLat2 = [Route rad:lat2];
@@ -27,25 +28,23 @@
     return s;
 }
 
-+(double)rad:(double)d
++ (double)rad:(double)d
 {
-    return d *3.14159265 / 180.0;
+    return d * 3.14159265 / 180.0;
 }
 
--(float)calculateLength
+- (float)calculateLength
 {
-    if([self.destinations count]<2)
-    {
+    if ([self.destinations count]<2) {
         return 0;
     }
     
     float len = 0;
     
-    Destination* prevDest = [self.destinations objectAtIndex:0];
+    Destination *prevDest = self.destinations[0];
     
-    for (int i = 1; i < [self.destinations count]; i++)
-    {
-        Destination* dest = [self.destinations objectAtIndex:i];
+    for (int i = 1; i < [self.destinations count]; i++) {
+        Destination *dest = self.destinations[i];
         
         float distance = [Route GetDistance:prevDest.coordinates.latitude long1:prevDest.coordinates.longitude la2:dest.coordinates.latitude long2:dest.coordinates.longitude];
         
@@ -58,10 +57,9 @@
 }
 
 #pragma mark Allocation and Deallocation
--(id)init
+- (instancetype)init
 {
-    if(self = [super init])
-    {
+    if( self = [super init] ) {
         self.destinations = [[NSMutableArray alloc]init];
     }
     
@@ -69,23 +67,19 @@
 }
 
 #pragma mark Public interface
--(float)length
-{
+- (float)length {
     return [self calculateLength];
 }
 
--(void)appendDestination:(Destination*)destination
-{
+- (void)appendDestination:(Destination *)destination {
     [self.destinations addObject:destination];
 }
 
--(void)appendRoute:(Route*)route
-{
+- (void)appendRoute:(Route *)route {
     [self.destinations addObjectsFromArray:route.destinations];
 }
 
--(void)insertDestinationAtStart:(Destination*)destination
-{    
+- (void)insertDestinationAtStart:(Destination *)destination {
     [self.destinations insertObject:destination atIndex:0];
 }
 

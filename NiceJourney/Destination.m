@@ -3,7 +3,8 @@
 //  NiceJourney
 //
 //  Created by Oleksiy Ivanov on 19/07/2013.
-//  Copyright (c) 2013 Oleksiy Ivanov. All rights reserved.
+//  Copyright (c) 2013 Oleksiy Ivanov.
+//  The MIT License (MIT).
 //
 
 #import "Destination.h"
@@ -14,29 +15,25 @@
 
 
 #pragma mark Allocation and Deallocation
--(id)initWithString:(NSString*)string withIdentifier:(NSString*)identifier
+- (instancetype)initWithString:(NSString *)string withIdentifier:(NSString *)identifier
 {
-    if(self = [super init])
-    {
+    if(self = [super init]) {
         //extract components from string, return nil if required component not present
-        NSArray* components = [string componentsSeparatedByString:@"("];
-        if([components count]<2)
-        {
+        NSArray *components = [string componentsSeparatedByString:@"("];
+        if ([components count]<2) {
             return nil;
         }
         
-        NSString* title = [components objectAtIndex:0];
+        NSString *title = [components objectAtIndex:0];
         
-        NSString* coordinates = [[components objectAtIndex:1]stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@")"]];
+        NSString *coordinates = [[components objectAtIndex:1]stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@")"]];
         
-        NSArray* coordinatesComponents = [coordinates componentsSeparatedByString:@","];
-        if([coordinatesComponents count]<2)
-        {
+        NSArray *coordinatesComponents = [coordinates componentsSeparatedByString:@","];
+        if ([coordinatesComponents count]<2) {
             return nil;
         }
         
-        if(![coordinatesComponents[0]length] || ![coordinatesComponents[1]length])
-        {
+        if (![coordinatesComponents[0]length] || ![coordinatesComponents[1]length]) {
             //coordinates are required for destination object
             return nil;
         }
@@ -63,16 +60,16 @@
 }
 
 #pragma mark Public interface
--(NSString*)stringRepresentation
+- (NSString *)stringRepresentation
 {
-    NSString* string = [NSString stringWithFormat:@"%@ (%f, %f)", self.title, self.coordinates.latitude, self.coordinates.longitude];
+    NSString *string = [NSString stringWithFormat:@"%@ (%f, %f)", self.title, self.coordinates.latitude, self.coordinates.longitude];
     
     return string;
 }
 
--(NSString*)description
+- (NSString *)description
 {
-    NSString* str = [NSString stringWithFormat:@"<%@ %p, %@>",NSStringFromClass([self class]), self,[self stringRepresentation]];
+    NSString *str = [NSString stringWithFormat:@"<%@ %p, %@>",NSStringFromClass([self class]), self, [self stringRepresentation]];
     
     return str;
 }

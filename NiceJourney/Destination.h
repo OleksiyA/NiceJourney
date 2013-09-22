@@ -3,7 +3,8 @@
 //  NiceJourney
 //
 //  Created by Oleksiy Ivanov on 19/07/2013.
-//  Copyright (c) 2013 Oleksiy Ivanov. All rights reserved.
+//  Copyright (c) 2013 Oleksiy Ivanov.
+//  The MIT License (MIT).
 //
 
 #import <Foundation/Foundation.h>
@@ -17,11 +18,11 @@ typedef struct {
 
 @interface Destination : NSObject
 
-@property(nonatomic,strong) NSString*           title;
+@property(nonatomic,strong) NSString            *title;
 @property CLLocationCoordinate2D                coordinates;
-@property(nonatomic,strong) NSString*           identifier;
+@property(nonatomic,strong) NSString            *identifier;
 
--(id)initWithString:(NSString*)string withIdentifier:(NSString*)identifier;
--(NSString*)stringRepresentation;
+- (instancetype)initWithString:(NSString *)string withIdentifier:(NSString *)identifier;
+- (NSString *)stringRepresentation;
 
 @end

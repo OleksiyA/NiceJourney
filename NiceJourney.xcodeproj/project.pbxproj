@@ -10,9 +10,7 @@
 		4DAF984B17A0463D00C0A3E2 /* RouteResolverBruteForce.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF984A17A0463D00C0A3E2 /* RouteResolverBruteForce.m */; };
 		4DB6D0B71799D0AC00501630 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB6D0B61799D0AC00501630 /* Foundation.framework */; };
 		4DB6D0BA1799D0AC00501630 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB6D0B91799D0AC00501630 /* main.m */; };
-		4DB6D0BE1799D0AD00501630 /* NiceJourney.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4DB6D0BD1799D0AD00501630 /* NiceJourney.1 */; };
 		4DB6D0C61799D25E00501630 /* Destination.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB6D0C51799D25E00501630 /* Destination.m */; };
-		4DB6D0C81799D2B100501630 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB6D0C71799D2B100501630 /* CoreLocation.framework */; };
 		4DB6D0CB179C0D0D00501630 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB6D0CA179C0D0D00501630 /* Route.m */; };
 		4DB6D0CE179C0D8700501630 /* RouteResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB6D0CD179C0D8700501630 /* RouteResolver.m */; };
 /* End PBXBuildFile section */
@@ -24,7 +22,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				4DB6D0BE1799D0AD00501630 /* NiceJourney.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -37,10 +34,8 @@
 		4DB6D0B61799D0AC00501630 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4DB6D0B91799D0AC00501630 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4DB6D0BC1799D0AC00501630 /* NiceJourney-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NiceJourney-Prefix.pch"; sourceTree = "<group>"; };
-		4DB6D0BD1799D0AD00501630 /* NiceJourney.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = NiceJourney.1; sourceTree = "<group>"; };
 		4DB6D0C41799D25E00501630 /* Destination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Destination.h; sourceTree = "<group>"; };
 		4DB6D0C51799D25E00501630 /* Destination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Destination.m; sourceTree = "<group>"; };
-		4DB6D0C71799D2B100501630 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4DB6D0C9179C0D0D00501630 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		4DB6D0CA179C0D0D00501630 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
 		4DB6D0CC179C0D8700501630 /* RouteResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteResolver.h; sourceTree = "<group>"; };
@@ -52,7 +47,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DB6D0C81799D2B100501630 /* CoreLocation.framework in Frameworks */,
 				4DB6D0B71799D0AC00501630 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,7 +74,6 @@
 		4DB6D0B51799D0AC00501630 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4DB6D0C71799D2B100501630 /* CoreLocation.framework */,
 				4DB6D0B61799D0AC00501630 /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -90,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				4DB6D0B91799D0AC00501630 /* main.m */,
-				4DB6D0BD1799D0AD00501630 /* NiceJourney.1 */,
 				4DB6D0BB1799D0AC00501630 /* Supporting Files */,
 				4DB6D0C41799D25E00501630 /* Destination.h */,
 				4DB6D0C51799D25E00501630 /* Destination.m */,

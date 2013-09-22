@@ -3,7 +3,8 @@
 //  NiceJourney
 //
 //  Created by Oleksiy Ivanov on 21/07/2013.
-//  Copyright (c) 2013 Oleksiy Ivanov. All rights reserved.
+//  Copyright (c) 2013 Oleksiy Ivanov.
+//  The MIT License (MIT).
 //
 
 #import "RouteResolver.h"
@@ -18,26 +19,24 @@
 
 
 #pragma mark Public interface
-+(id)routeResoverWithAlgorithm:(ERouteResolverAlgorithm)algorithm withDestinations:(NSArray*)destinations
++ (instancetype)routeResoverWithAlgorithm:(ERouteResolverAlgorithm)algorithm withDestinations:(NSArray *)destinations
 {
-    RouteResolver* resolver = nil;
+    RouteResolver   *resolver = nil;
     
-    switch (algorithm)
-    {
+    switch (algorithm) {
         case ERouteResolverAlgorithmBruteForce:
             resolver = [[RouteResolverBruteForce alloc]init];
             break;
     }
     
-    if(resolver)
-    {
+    if (resolver) {
         resolver.inputDestinations = destinations;
     }
     
     return resolver;
 }
 
--(void)resoveRoute
+- (void)resoveRoute
 {
     //to be overriden by inherited classes
 }
